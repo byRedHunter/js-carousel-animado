@@ -33,12 +33,20 @@ const prevSlider = (sliders) => {
 }
 
 $next.addEventListener('click', () => {
+	clearInterval(runSlider)
+
 	nextSlider($sliders)
+
+	runSlider = setInterval(() => {
+		nextSlider($sliders)
+	}, 5000)
 })
 $prev.addEventListener('click', () => {
 	prevSlider($sliders)
 })
 
-document.onload = setInterval(() => {
+let runSlider = setInterval(() => {
 	nextSlider($sliders)
 }, 5000)
+
+document.onload = runSlider
